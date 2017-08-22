@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+	<title>Job Details</title>
+	<style>
+		input[type="radio"] {
+			-webkit-appearance: checkbox;
+		}
+	</style>
+	<script type="text/javascript">
+		function addQualifications() {
+			var fields = document.getElementById("qualifications");
+			var selected = document.getElementById("selectedQualifications");
+
+			for(var i=0; i<fields.options.length; i++) {
+				if(fields.options[i].selected) {
+					var option = document.createElement("option");
+					option.value = fields.options[i].value;
+					option.text = fields.options[i].text;
+					selected.add(option);
+				}
+			}
+		}
+
+		function removeQualifications() {
+			var fields = document.getElementById("selectedQualifications");
+
+			for(var i=0; i<fields.options.length; i++) {
+				if(fields.options[i].selected) {
+					fields.remove(fields.options[i]);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Job Details</h1>
+	<form name="jobDetails">
+		<table>
+			<tr>
+				<td>Job Title</td>
+				<td><input type="input" name="title" required></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td>
+					<textarea name="description" rows="5" required></textarea>
+					<p>Brief Description should have at most 500 characters</p>
+				</td>
+			</tr>
+			<tr>
+				<td>Company Name</td>
+				<td><input type="input" name="companyName" required></td>
+			</tr>
+			<tr>
+				<td>Contact Number</td>
+				<td><input type="Number" name="contactNum" required pattern="[0-9]"></td> 
+			</tr>
+			<tr>
+				<td>Contact Person</td>
+				<td><input type="input" name="name" required></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="Email" name="email" required></td>
+			</tr>
+			<tr>
+				<td>Work Status</td>
+				<td>
+					<input type="radio" name="status" value="fulltime">Full Time
+					<input type="radio" name="status" value="parttime">Part Time
+					<input type="radio" name="status" value="perdim">Per Dim
+					<input type="radio" name="status" value="others">Others
+				</td>
+			</tr>
+			<tr>
+				<td>Salary</td>
+				<td>
+					<input type="input" name="salary" required>
+					<select name="currency">
+						<option value="USD">US Dollar</option>
+						<option value="SGD">SG Dollar</option>
+					</select>
+					<select name="period">
+						<option value="yearly">Yearly</option>
+						<option value="monthly">Monthly</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Experience(Years)</td>
+				<td><input type="Number" name="experience" required></td>
+			</tr>
+			<tr>
+				<td>Location</td>
+				<td><input type="input" name="location" required></td>
+			</tr>
+			<tr>
+				<td>Qualifications</td>
+				<td>
+					<select id="qualifications" name="qualifications" multiple>
+						<option value="any">Any</option>
+						<option value="highschool">High School</option>
+						<option value="associate">Associate</option>
+						<option value="prebachelors">Pre Bachelors</option>
+					</select>
+					<button type="button" name="add" onclick="addQualifications()">Add &gt;&gt;</button>
+					<button type="button" name="remove" onclick="removeQualifications()">Remove &lt;&lt;</button>
+					<select id="selectedQualifications" name="selectedQualifications" multiple>
+						<option value="any">Any</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><button type="submit">Submit</button></td>
+				<td><button type="reset">Reset</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
